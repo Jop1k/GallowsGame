@@ -8,30 +8,11 @@ namespace Game
     {
         static void Main(string[] args)
         {
-            var game = new GallowsGame();
+            string[] menuList = ["Начать новую игру", "Выход из игры"];
 
-            while (true)
-            {
-                Console.WriteLine("Выбирайте: 1) Играть | 2) Выйти");
-                string userAnswer = Console.ReadLine().ToLower();
+            var consoleMenu = new Menu(menuList, "\t=== Виселица ===");
 
-                switch (userAnswer)
-                {
-                    case "1":
-                    case "играть":
-                        game.PlayGame();
-                        Console.Clear();
-                        break;
-                    case "2":
-                    case "выйти":
-                        return;
-                    default:
-                        Console.Clear();
-                        Console.WriteLine("Такого выбора нет");
-                        break;
-                }
-            }
-
+            consoleMenu.menuInteraction();
         }
     }
 }
