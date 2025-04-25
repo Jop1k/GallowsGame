@@ -1,58 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Game;
 
-namespace Game;
-
-class Menu
+abstract class Menu
 {
-    private readonly string _menuName;
-    private readonly string[] _selectionList;
     private int _currentIndexMenu = 0;
 
-    public Menu(string[] selectionList, string menuName)
-    {
-        _selectionList = selectionList;
-        _menuName = menuName;
-    }
+    protected bool ExitMenu { get; set; }
 
-    private void Action(int choice)
+    protected abstract string MenuName { get; }
+
+    protected abstract string[] SelectionList { get; }
+
+    protected abstract void Action(int choice);
+
+    public void MenuInteraction()
     {
-        var game = new GallowsGame();
-        switch (choice)
+        ExitMenu = false;
+
+        while (!ExitMenu)
         {
-            case 0:
-                game.PlayGame();
-                break;
-            case 1:
-                Environment.Exit(0);
-                break;
-        }
-    }
-
-    public void menuInteraction()
-    {
-        while (true)
-        {
-            Console.Clear();
-
             PrintMenu();
 
             switch (Console.ReadKey().Key)
             {
                 case ConsoleKey.UpArrow:
                     if (_currentIndexMenu > 0)
-                    {
                         _currentIndexMenu--;
-                    }
                     break;
                 case ConsoleKey.DownArrow:
-                    if (_currentIndexMenu < _selectionList.Length - 1)
-                    {
+                    if (_currentIndexMenu < SelectionList.Length - 1)
                         _currentIndexMenu++;
-                    }
                     break;
                 case ConsoleKey.Enter:
                     Action(_currentIndexMenu);
@@ -63,18 +39,19 @@ class Menu
 
     private void PrintMenu()
     {
-        Console.WriteLine(_menuName);
+        Console.Clear();
+
+        Console.WriteLine(MenuName);
         Console.WriteLine();
 
-        for (int i = 0; i < _selectionList.Length; i++)
+        for (int i = 0; i < SelectionList.Length; i++)
         {
             if (i == _currentIndexMenu)
             {
-                Console.BackgroundColor = Console.ForegroundColor;
-                Console.ForegroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.Green;
             }
 
-            Console.WriteLine($"{i + 1}) {_selectionList[i]}");
+            Console.WriteLine($"{i + 1}) {SelectionList[i]}");
             Console.ResetColor();
         }
     }

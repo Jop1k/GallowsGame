@@ -8,11 +8,7 @@ namespace Game
     {
         static void Main(string[] args)
         {
-            string[] menuList = ["Начать новую игру", "Выход из игры"];
 
-            var consoleMenu = new Menu(menuList, "\t=== Виселица ===");
-
-            consoleMenu.menuInteraction();
         }
     }
 }
