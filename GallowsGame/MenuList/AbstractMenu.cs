@@ -4,7 +4,7 @@ abstract class Menu
 {
     private int _currentIndexMenu = 0;
 
-    protected bool ExitMenu { get; set; }
+    private bool _exitMenu = false;
 
     protected abstract string MenuName { get; }
 
@@ -12,11 +12,16 @@ abstract class Menu
 
     protected abstract void Action(int choice);
 
+    protected void ExitMenu()
+    {
+        _exitMenu = true;
+    }
+
     public void MenuInteraction()
     {
-        ExitMenu = false;
+        _exitMenu = false;
 
-        while (!ExitMenu)
+        while (!_exitMenu)
         {
             PrintMenu();
 

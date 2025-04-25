@@ -3,6 +3,7 @@
 class MainMenu : Menu
 {
     private GallowsGame _game = new GallowsGame();
+
     protected override string MenuName { get; } = "\t=== Главное меню ===";
 
     protected override string[] SelectionList { get; } = ["Начать новую игру", "Настройки", "Выйти из игры"];
@@ -16,9 +17,10 @@ class MainMenu : Menu
                 break;
             case 1:
                 Console.WriteLine("в разработке");
+                Console.ReadKey();
                 break;
             case 2:
-                ExitMenu = true;
+                ExitMenu();
                 break;
         }
     }
