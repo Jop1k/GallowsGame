@@ -38,6 +38,11 @@ abstract class Menu
                 case ConsoleKey.Enter:
                     Action(_currentIndexMenu);
                     break;
+                default:
+                    Console.WriteLine();
+                    Console.WriteLine("Подсказка: для перемещения по меню используйте стрелочки");
+                    Console.ReadKey();
+                    break;
             }
         }
     }

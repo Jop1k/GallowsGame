@@ -16,7 +16,8 @@ class MainMenu : Menu
                 _game.PlayGame();
                 break;
             case 1:
-                Console.WriteLine("в разработке");
+                Console.WriteLine();
+                Console.WriteLine("В разработке");
                 Console.ReadKey();
                 break;
             case 2:
