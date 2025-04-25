@@ -1,14 +1,11 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿namespace GallowsGame;
 
-namespace Game
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
+        var consoleMenu = new MainMenu();
 
-        }
+        consoleMenu.MenuInteraction();
     }
 }

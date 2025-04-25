@@ -1,4 +1,4 @@
-﻿namespace Game;
+﻿namespace GallowsGame;
 
 abstract class Menu
 {
