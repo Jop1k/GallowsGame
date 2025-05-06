@@ -1,37 +1,30 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿namespace GallowsGame;
 
-namespace Game
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        Console.CursorVisible = false;
+
+        Menu mainMenu = new Menu("\t=== Главное меню ===", ["Начать новую игру", "Настройки", "Выйти из игры"], choice =>
         {
-            var game = new GallowsGame();
-
-            while (true)
+            switch (choice)
             {
-                Console.WriteLine("Выбирайте: 1) Играть | 2) Выйти");
-                string userAnswer = Console.ReadLine().ToLower();
-
-                switch (userAnswer)
-                {
-                    case "1":
-                    case "играть":
-                        game.PlayGame();
-                        Console.Clear();
-                        break;
-                    case "2":
-                    case "выйти":
-                        return;
-                    default:
-                        Console.Clear();
-                        Console.WriteLine("Такого выбора нет");
-                        break;
-                }
+                case 0:
+                    var game = new GallowsGame();
+                    game.PlayGame();
+                    break;
+                case 1:
+                    Console.WriteLine();
+                    Console.WriteLine("В разработке");
+                    Console.ReadKey();
+                    break;
+                case 2:
+                    Menu.ExitMenu();
+                    break;
             }
+        });
 
-        }
+        mainMenu.MenuInteraction();
     }
 }
