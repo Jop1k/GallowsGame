@@ -1,18 +1,22 @@
 ﻿namespace GallowsGame;
 
-abstract class Menu
+internal class Menu
 {
     private int _currentIndexMenu = 0;
+    private static bool _exitMenu = false;
+    private Action<int> _action;
+    public Menu(string menuName, string[] selectionList, Action<int> action)
+    {
+        MenuName = menuName;
+        SelectionList = selectionList;
+        _action = action;
+    }
 
-    private bool _exitMenu = false;
+    private string MenuName { get; init; }
 
-    protected abstract string MenuName { get; }
+    private string[] SelectionList { get; init; }
 
-    protected abstract string[] SelectionList { get; }
-
-    protected abstract void Action(int choice);
-
-    protected void ExitMenu()
+    public static void ExitMenu()
     {
         _exitMenu = true;
     }
@@ -36,7 +40,7 @@ abstract class Menu
                         _currentIndexMenu++;
                     break;
                 case ConsoleKey.Enter:
-                    Action(_currentIndexMenu);
+                    _action(_currentIndexMenu);
                     break;
                 default:
                     Console.WriteLine();

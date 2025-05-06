@@ -6,8 +6,25 @@ class Program
     {
         Console.CursorVisible = false;
 
-        var consoleMenu = new MainMenu();
+        Menu mainMenu = new Menu("\t=== Главное меню ===", ["Начать новую игру", "Настройки", "Выйти из игры"], choice =>
+        {
+            switch (choice)
+            {
+                case 0:
+                    var game = new GallowsGame();
+                    game.PlayGame();
+                    break;
+                case 1:
+                    Console.WriteLine();
+                    Console.WriteLine("В разработке");
+                    Console.ReadKey();
+                    break;
+                case 2:
+                    Menu.ExitMenu();
+                    break;
+            }
+        });
 
-        consoleMenu.MenuInteraction();
+        mainMenu.MenuInteraction();
     }
 }
